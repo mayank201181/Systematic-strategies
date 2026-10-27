@@ -183,6 +183,12 @@ def main():
                             ["instrument", "description", "direction", "contracts", "forecast",
                              "entry_date", "entry_price", "last_price", "pnl_usd", "signal_since"])
     (out / "blotter.md").write_text("\n".join(lines))
+    # short version for the daily notification: changes plus one line per book
+    first = next((i for i, l in enumerate(lines) if l.startswith(f"## {BOOKS[0]}:")), len(lines))
+    summary = [f"- {l[3:]}" for l in lines[first:] if l.startswith("## ")]
+    short = lines[:first] + ["### Books", ""] + summary + [
+        "", "Full open book: `results/book/blotter.md`."]
+    (out / "blotter_changes.md").write_text("\n".join(short))
     state_p.write_text(json.dumps({"as_of": as_of, "n_new_events": int(len(new))}))
     print("\n".join(lines[:40]))
 
