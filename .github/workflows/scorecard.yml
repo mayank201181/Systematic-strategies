@@ -27,6 +27,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -55,7 +57,11 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add results data/live data/pst
           git diff --cached --quiet || git commit -m "Scorecard $(date -u +%F)"
-          git push
+          # a code push can land mid-run; replay the results commit on top of it
+          for i in 1 2 3; do
+            git push && break
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
+          done
       - name: Post trade changes to the blotter issue
         if: github.ref == 'refs/heads/main'
         env:
