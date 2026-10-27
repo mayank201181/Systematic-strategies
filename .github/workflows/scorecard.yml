@@ -1,0 +1,76 @@
+name: scorecard
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["syslib/**", ".github/workflows/**", "requirements.txt"]
+  schedule:
+    - cron: "30 22 * * 1-5"   # weekdays after the US close
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Pull 3y of history for listed contracts (first run)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: scorecard
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Refresh pysystemtrade base data (Mondays)
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git clone --depth 1 --filter=blob:none --sparse https://github.com/pst-group/pysystemtrade /tmp/pst
+            (cd /tmp/pst && git sparse-checkout set data/futures/adjusted_prices_csv data/futures/multiple_prices_csv data/futures/csvconfig)
+            python -c "from syslib.data import build_panels; build_panels('/tmp/pst/data/futures', 'data/pst')"
+          fi
+      - name: Extend data with Yahoo Finance
+        run: python -m syslib.live ${{ inputs.backfill && '--backfill' || '' }}
+      - name: Run scorecard
+        run: python -m syslib.scorecard --data data/merged --out results
+      - name: Render report
+        run: python -m syslib.report --results results
+      - name: Update trade ledger
+        run: python -m syslib.ledger --data data/merged --out results/book
+      - name: Tests
+        run: python -m pytest -q tests
+      - name: Commit results
+        run: |
+          git config user.name "scorecard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results data/live data/pst
+          git diff --cached --quiet || git commit -m "Scorecard $(date -u +%F)"
+          # a code push can land mid-run; replay the results commit on top of it
+          for i in 1 2 3; do
+            git push && break
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}"
+          done
+      - name: Post trade changes to the blotter issue
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(gh issue list --label blotter --state open --json number -q '.[0].number')
+          if [ -z "$n" ]; then
+            gh label create blotter --color 0e8a16 --force
+            url=$(gh issue create --title "Trade blotter" --label blotter --body "Each weekday run comments here with new, closed, flipped and resized trades in the live books.")
+            n=${url##*/}
+          fi
+          gh issue comment "$n" --body-file results/book/blotter_changes.md
