@@ -1,6 +1,9 @@
 name: scorecard
 
 on:
+  push:
+    branches: ["claude/**"]
+    paths: ["syslib/**", ".github/workflows/**", "requirements.txt"]
   schedule:
     - cron: "30 22 * * 1-5"   # weekdays after the US close
   workflow_dispatch:
