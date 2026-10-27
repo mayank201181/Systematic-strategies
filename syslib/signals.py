@@ -169,7 +169,10 @@ def asset_trend(c, fast=16, slow=64):
 # --------------------------------------------------------------------------
 
 def carry(c, span=90):
-    return c.raw_carry.ewm(span=span, min_periods=1).mean()
+    raw = c.raw_carry
+    # ewm carries the last value through gaps; drop the signal once the carry
+    # input has been missing for more than ten days so it never goes stale
+    return raw.ewm(span=span, min_periods=1).mean().where(raw.ffill(limit=10).notna())
 
 
 def relative_carry(c, span=90):

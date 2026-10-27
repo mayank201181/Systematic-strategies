@@ -127,7 +127,7 @@ def main():
     cols = ["family", "sharpe", "sr_haircut", "t_hac", "ann_vol", "max_dd", "sr_10s", "sr_20s", "sr_last5y",
             "cost_sr", "corr_trend", "corr_long_rp", "deflated_sr_prob"]
     with pd.option_context("display.width", 250, "display.max_columns", 30):
-        print(card[cols].round(2).to_string())
+        print(card[[c for c in cols if c in card]].round(2).to_string())
         print(sectors.round(2).to_string())
 
 

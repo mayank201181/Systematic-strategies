@@ -58,6 +58,16 @@ YAHOO = {
     "BITCOIN": ("BTC", "CME", MONTHLY), "ETHEREUM": ("ETH", "CME", MONTHLY),
 }
 ROLL_Z = 6.0
+# Only commodity groups have roll gaps big enough to matter; a >6 sigma day in
+# FX, rates, equity indices or metals is treated as a real move.
+ROLL_GROUPS = {"Ags", "Energy"}
+
+
+def _roll_window(d, cycle):
+    """True when d sits in a listed delivery month or the month before one."""
+    this = MONTHLY[d.month - 1]
+    nxt = MONTHLY[d.month % 12]
+    return this in cycle or nxt in cycle
 
 
 def _yf():
@@ -118,7 +128,7 @@ def fetch_curve(today, n=4, period="5d"):
     return pd.DataFrame(rows)
 
 
-def splice(base, yahoo, log):
+def splice(base, yahoo, log, groups=None):
     """Append Yahoo daily changes after the last base date (roll gaps zeroed)."""
     adj = base.adj.copy()
     out = {k: getattr(base, k).copy() for k in PANELS}
@@ -141,7 +151,11 @@ def splice(base, yahoo, log):
             continue
         sig = y.diff().abs().ewm(span=32, min_periods=10).mean().shift(1) * 1.25
         z = (d / sig.reindex(d.index)).abs()
-        gaps = z[z > ROLL_Z].index
+        if groups is not None and groups.get(inst) not in ROLL_GROUPS:
+            gaps = z.index[:0]
+        else:
+            cyc = YAHOO.get(inst, (None, None, MONTHLY))[2]
+            gaps = pd.DatetimeIndex([g for g in z[z > ROLL_Z].index if _roll_window(g, cyc)])
         for g in gaps:
             log.append({"date": g, "instrument": inst, "change": d.loc[g],
                         "z": z.loc[g]})
@@ -187,6 +201,8 @@ def main():
     ap.add_argument("--out", default="data/merged")
     ap.add_argument("--backfill", action="store_true",
                     help="pull 3y of history for currently listed contracts")
+    ap.add_argument("--offline", action="store_true",
+                    help="rebuild merged panels from data/live without downloading")
     a = ap.parse_args()
     from .data import load_panel
     base = load_panel(a.base)
@@ -194,15 +210,21 @@ def main():
     live.mkdir(parents=True, exist_ok=True)
     today = pd.Timestamp(dt.date.today())
 
-    yahoo = fetch_continuous(start="2023-10-01")
-    yahoo.to_parquet(live / "continuous.parquet")
-    print(f"continuous: {yahoo.shape[1]} instruments, last {yahoo.index.max().date()}")
-
     curve_path = live / "curve.csv"
     old = pd.read_csv(curve_path, parse_dates=["date"]) if curve_path.exists() else None
+    if a.offline:
+        yahoo = pd.read_parquet(live / "continuous.parquet")
+    else:
+        yahoo = fetch_continuous(start="2023-10-01")
+        yahoo.to_parquet(live / "continuous.parquet")
+    print(f"continuous: {yahoo.shape[1]} instruments, last {yahoo.index.max().date()}")
+    # first runs pull contract history so the tail has carry from the start
+    backfill = a.backfill or old is None or old["date"].nunique() < 60
     try:
-        new = fetch_curve(today, n=6 if a.backfill else 4,
-                          period="3y" if a.backfill else "10d")
+        if a.offline:
+            raise RuntimeError("offline")
+        new = fetch_curve(today, n=6 if backfill else 4,
+                          period="3y" if backfill else "10d")
         print(f"curve: {new.instrument.nunique() if len(new) else 0} instruments, "
               f"{len(new)} rows")
     except Exception as e:  # keep the run alive if contract tickers fail
@@ -215,7 +237,7 @@ def main():
         curve.sort_values(["date", "instrument", "contract"]).to_csv(curve_path, index=False)
 
     log = []
-    out = splice(base, yahoo, log)
+    out = splice(base, yahoo, log, base.meta["group"].to_dict())
     out = apply_curve(out, curve)
     pd.DataFrame(log).to_csv(live / "roll_filter_log.csv", index=False)
     dst = Path(a.out)
@@ -225,7 +247,11 @@ def main():
     shutil.copy(Path(a.base) / "meta.csv", dst / "meta.csv")
     fx = base.fx.copy() if base.fx is not None else pd.DataFrame()
     try:
-        yfx = fetch_fx("2024-01-01")
+        if a.offline:
+            yfx = pd.read_parquet(live / "fx.parquet")
+        else:
+            yfx = fetch_fx("2024-01-01")
+            yfx.to_parquet(live / "fx.parquet")
         last = fx.index.max()
         tail = yfx.loc[yfx.index > last]
         fx = pd.concat([fx, tail]).sort_index()
