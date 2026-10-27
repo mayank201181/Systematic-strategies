@@ -44,6 +44,8 @@ jobs:
         run: python -m syslib.scorecard --data data/merged --out results
       - name: Render report
         run: python -m syslib.report --results results
+      - name: Update trade ledger
+        run: python -m syslib.ledger --data data/merged --out results/book
       - name: Tests
         run: python -m pytest -q tests
       - name: Commit results

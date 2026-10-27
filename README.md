@@ -24,6 +24,7 @@ reproduces the published result (see `results/README.md`).
 | `syslib/scorecard.py` | runs the registry, writes `results/` |
 | `syslib/live.py` | extends data to today from Yahoo Finance (runs in Actions) |
 | `syslib/report.py` | renders `results/README.md` and charts |
+| `syslib/ledger.py` | live books: positions in contracts, trade events, open/closed trades, `results/book/blotter.md` |
 
 ## Run locally
 

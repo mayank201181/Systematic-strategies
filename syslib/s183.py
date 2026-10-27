@@ -27,7 +27,7 @@ def _norm(x):
 
 
 def _sig(x):
-    return 1.0 / (1.0 + np.exp(-x))
+    return 1.0 / (1.0 + np.exp(-np.clip(x, -50, 50)))
 
 
 def pooled_fdm_ewm(sleeves, span=512, min_periods=256, cap=2.0):

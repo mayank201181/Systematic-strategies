@@ -56,6 +56,12 @@ def build_panels(pst_data_dir, out_dir, instruments=BROAD):
         cols["carry_ym"][inst] = _contract_to_years(mul["CARRY_CONTRACT"])
     for k, d in cols.items():
         pd.DataFrame(d).sort_index().to_parquet(out / f"{k}.parquet")
+    fx = {}
+    for f in sorted((pst / "fx_prices_csv").glob("*USD.csv")):
+        fx[f.stem[:3]] = _daily_last(pd.read_csv(f, index_col=0).iloc[:, 0])
+    fx = pd.DataFrame(fx).sort_index()
+    fx["USD"] = 1.0
+    fx.to_parquet(out / "fx.parquet")
     cfg = pd.read_csv(pst / "csvconfig" / "instrumentconfig.csv").set_index("Instrument")
     sc = pd.read_csv(pst / "csvconfig" / "spreadcosts.csv").set_index("Instrument")
     insts = sorted(cols["adj"])
@@ -80,6 +86,15 @@ class Panel:
     price_ym: pd.DataFrame
     carry_ym: pd.DataFrame
     meta: pd.DataFrame
+    fx: pd.DataFrame = None        # USD per unit of each currency
+
+    def fx_for(self, instruments=None):
+        """USD per unit of each instrument's currency, aligned to the price index."""
+        insts = instruments or self.instruments
+        fx = self.fx.reindex(self.adj.index).ffill()
+        ccy = self.meta["currency"].reindex(insts)
+        return pd.DataFrame({i: fx[c] if c in fx else np.nan for i, c in ccy.items()},
+                            index=self.adj.index)
 
     @property
     def instruments(self):
@@ -89,7 +104,7 @@ class Panel:
         insts = [i for i in (instruments or self.instruments) if i in self.adj.columns]
         sl = slice(start, end)
         return Panel(*(getattr(self, k).loc[sl, insts] for k in PANELS),
-                     meta=self.meta.loc[insts])
+                     meta=self.meta.loc[insts], fx=self.fx)
 
     @property
     def groups(self):
@@ -100,9 +115,15 @@ def load_panel(data_dir, instruments=None, start=None, end=None):
     d = Path(data_dir)
     frames = {k: pd.read_parquet(d / f"{k}.parquet") for k in PANELS}
     idx = frames["adj"].index
+    # drop trailing dates where most markets are shut (e.g. a Good Friday close)
+    cnt = frames["adj"].notna().sum(axis=1)
+    while len(cnt) > 10 and cnt.iloc[-1] < 0.5 * cnt.iloc[-11:-1].max():
+        cnt = cnt.iloc[:-1]
+    idx = cnt.index
     frames = {k: v.reindex(idx) for k, v in frames.items()}
     meta = pd.read_csv(d / "meta.csv", index_col=0)
-    p = Panel(**frames, meta=meta)
+    fx = pd.read_parquet(d / "fx.parquet") if (d / "fx.parquet").exists() else None
+    p = Panel(**frames, meta=meta, fx=fx)
     if instruments is not None or start is not None or end is not None:
         p = p.subset(instruments, start, end)
     return p

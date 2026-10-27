@@ -70,3 +70,15 @@ def test_costs_reduce_returns():
 
 def test_haircut_shrinks():
     assert haircut_sharpe(1.0, 3.0, 20) < 1.0
+
+
+def test_ledger_events_open_flip_close():
+    from syslib.ledger import trades_for
+    idx = pd.bdate_range("2026-01-05", periods=6)
+    con = pd.DataFrame({"X": [0, 2, 2, -3, -3, 0]}, index=idx, dtype=float)
+    bp = dict(contracts=con, pnl=con * 0 + 1.0, price=con * 0 + 100.0,
+              forecast=con * 5.0)
+    ev, op, cl = trades_for("b", bp, "2026-01-05")
+    assert [e["action"] for e in ev] == ["open", "flip", "close"]
+    assert len(cl) == 2 and not op
+    assert cl[0]["pnl_usd"] == 2.0   # held from day 1 to day 3

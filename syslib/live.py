@@ -74,6 +74,17 @@ def fetch_continuous(start):
     return df
 
 
+FX_CCYS = ["AUD", "CAD", "CHF", "CNH", "EUR", "GBP", "HKD", "JPY", "KRW", "MXN", "SEK", "SGD"]
+
+
+def fetch_fx(start):
+    tick = {f"{c}USD=X": ("MXP" if c == "MXN" else c) for c in FX_CCYS}
+    df = _yf().download(list(tick), start=start, auto_adjust=False, progress=False,
+                        threads=True)["Close"].rename(columns=tick)
+    df.index = pd.to_datetime(df.index).tz_localize(None).normalize()
+    return df
+
+
 def contract_codes(cycle, today, n):
     out = []
     y, m = today.year, today.month
@@ -212,6 +223,17 @@ def main():
     for k, v in out.items():
         v.to_parquet(dst / f"{k}.parquet")
     shutil.copy(Path(a.base) / "meta.csv", dst / "meta.csv")
+    fx = base.fx.copy() if base.fx is not None else pd.DataFrame()
+    try:
+        yfx = fetch_fx("2024-01-01")
+        last = fx.index.max()
+        tail = yfx.loc[yfx.index > last]
+        fx = pd.concat([fx, tail]).sort_index()
+        fx["USD"] = 1.0
+        print(f"fx: extended to {fx.index.max().date()}")
+    except Exception as e:
+        print(f"fx fetch failed, carrying last rates forward: {e}")
+    fx.to_parquet(dst / "fx.parquet")
     print(f"merged panels to {out['adj'].index.max().date()}; "
           f"{len(log)} roll gaps zeroed")
 
