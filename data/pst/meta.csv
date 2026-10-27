@@ -1,0 +1,105 @@
+instrument,group,description,currency,pointsize,commission,spread
+AEX,Equity,Netherlands equity index AEX,EUR,200.0,2.8,0.12
+ALUMINIUM,Metals,NYMEX Aluminum Index,USD,25.0,3.37,1.1
+AUD,FX_G10,AUDUSD currency,USD,100000.0,2.47,3.3e-05
+BITCOIN,Crypto,Micro Bitcoin,USD,0.1,3.27,13.0
+BOBL,Bond,German 5 year bond Bobl,EUR,1000.0,2.0,0.0051
+BRE,FX_EM,BREUSD currency,USD,100000.0,2.47,3.5e-05
+BRENT_W,Energy,Brent crude summer,USD,1000.0,1.05,0.01
+BTP,Bond,Italian 10 year bond BTP,EUR,1000.0,2.0,0.0063
+BUND,Bond,German 10 year bond Bund,EUR,1000.0,2.0,0.0052
+BUXL,Bond,German Buxl 15 to 30 year bond,EUR,1000.0,2.0,0.01
+CAC,Equity,French equity index CAC40,EUR,10.0,2.0,0.44
+CAD,FX_G10,CADUSD currency,USD,100000.0,2.47,3e-05
+CAD10,Bond,Canadian 10 year bond,CAD,1000.0,2.4,0.0056
+CAD2,Bond,Canadian 2 year bond,CAD,1000.0,2.4,0.0025
+CAD5,Bond,Canadian 5 year bond,CAD,1000.0,2.4,0.0054
+CANOLA,Ags,Rapeseed (Canola) in CAD,CAD,20.0,2.4,0.12
+CH10,Bond,Swiss Federal Long-Term Bonds,CHF,1000.0,4.0,0.25
+CHF,FX_G10,CHFUSD currency,USD,125000.0,1.5,5.8e-05
+CNH,FX_EM,SGX US Dollar in offshore Chinese Renminbi (CNH),CNH,100000.0,11.2,0.0001199999999999
+COCOA,Ags,Cocoa NY,USD,10.0,2.97,3.9
+COFFEE,Ags,Coffee,USD,375.0,2.97,0.095
+COPPER,Metals,Copper,USD,25000.0,2.47,0.00047
+CORN,Ags,Corn,USD,50.0,2.97,0.16
+COTTON2,Ags,Cotton #2,USD,500.0,2.97,0.044
+CRUDE_W,Energy,Light sweet crude Winter,USD,1000.0,2.37,0.012
+DAX,Equity,DAX 30 Index (Deutsche Aktien Xchange 30),EUR,1.0,0.4,0.87
+DX,FX_G10,US Dollar Index,USD,1000.0,2.22,0.0027
+ETHEREUM,Crypto,CME CF Ether-Dollar Reference Rate,USD,50.0,10.0,1.2
+EUA,Energy,ECX EU carbon emissions allowance futures,EUR,1000.0,3.0,0.021
+EUR,FX_G10,EURUSD currency,USD,125000.0,2.47,2.9e-05
+EURCHF,FX_G10,Euro/chf,CHF,125000.0,2.3886734,0.00011
+EURIBOR-ICE,STIR,3 Month EURIBOR Interest Rate,EUR,2500.0,0.0,0.0025
+EURO600,Equity,Dow Jones STOXX 600 Index,EUR,50.0,2.0,0.057
+EUROSTX,Equity,European equity index EUROSTOXX50,EUR,10.0,2.0,0.48
+FEEDCOW,Ags,Feeder cattle,USD,500.0,2.97,0.04
+FTSE100,Equity,FTSE100 Index,GBP,10.0,1.7,0.47
+FTSE250,Equity,FTSE 250,GBP,2.0,0.0,9.5
+FTSECHINAA,Equity,FTSE/Xinhua China A50,USD,1.0,2.85,1.3
+FTSETAIWAN,Equity,FTSE Taiwan RIC Capped Price Return TWD Index,USD,40.0,1.25,0.14
+GASOIL,Energy,ICE-EU Low Sulphur Gasoil,USD,100.0,1.7,0.13
+GASOILINE,Energy,RBOB Gasoline US,USD,42000.0,2.37,0.00027
+GAS_US,Energy,Natural gas US,USD,10000.0,2.47,0.0011
+GBP,FX_G10,GBPUSD currency,USD,62500.0,2.47,6.1e-05
+GBPEUR,FX_G10,GBPEUR currency,GBP,125000.0,1.8734172,6.4e-05
+GILT,Bond,UK 10 year bonds Long Gilt,GBP,1000.0,0.0,0.005
+GOLD,Metals,Gold,USD,100.0,2.47,0.096
+HANG,Equity,Hong Kong equity index Hang Seng,HKD,50.0,30.0,1.5
+HEATOIL,Energy,Heating oil,USD,42000.0,2.37,0.00034
+IBEX,Equity,Spanish equity index IBEX,EUR,10.0,3.0,0.0
+INR,FX_EM,Indian Rupee,USD,500.0,2.47,0.015
+IRON,Metals,SGX TSI Iron Ore Futures,USD,100.0,3.25,0.066
+JGB,Bond,Standardized 6% 10-Year Japanese Government Bond,JPY,1000000.0,500.0,0.005
+JPY,FX_G10,JPYUSD currency,USD,12500000.0,2.47,2.7e-07
+KOSPI,Equity,Korean equity index KOSPI,KRW,250000.0,0.0,0.026
+KR10,Bond,Korean 10 year bond,KRW,1000000.0,0.0,0.0065
+KR3,Bond,Korean 3 year bond,KRW,1000000.0,0.0,0.005
+KRWUSD_mini,FX_EM,SGX Korean Won in US Dollar Futures (Mini),USD,25000.0,2.85,0.00011
+LEANHOG,Ags,Lean hogs,USD,400.0,2.97,0.017
+LIVECOW,Ags,Live cattle,USD,400.0,2.97,0.024
+MILLWHEAT,Ags,Milling Wheat Futures,EUR,50.0,2.0,0.12
+MSCIASIA,Equity,MSCI Emerging Markets Asia,USD,100.0,2.4,0.34
+MSCIEAFA,Equity,MSCI EAFA Index,USD,50.0,2.07,0.18
+MSCISING,Equity,MSCI Singapore Free Index,SGD,100.0,4.0,0.036
+MXP,FX_EM,MEXUSD currency,USD,500000.0,2.47,5.5e-06
+NASDAQ,Equity,US equity index Nasdaq,USD,20.0,2.2,0.32
+NIKKEI,Equity,Nikkei 225 Mini,JPY,100.0,40.0,3.4
+NOK,FX_G10,NOKUSD currency,USD,2000000.0,2.47,3.6e-05
+NZD,FX_G10,NZDUSD currency,USD,100000.0,2.47,2.9e-05
+OAT,Bond,French 10 year bond OAT,EUR,1000.0,2.0,0.0072
+OATIES,Ags,Oat Futures,USD,50.0,2.97,0.49
+OJ,Ags,Orange Juice (FCOJ-A),USD,150.0,2.97,0.73
+PALLAD,Metals,Palladium,USD,100.0,2.31,0.56
+PLAT,Metals,Platinum,USD,50.0,2.47,0.23
+PLN,FX_EM,Polish zloty,USD,500000.0,2.47,9.2e-05
+REDWHEAT,Ags,Hard Red Winter Wheat -KCBOT-,USD,50.0,2.97,0.16
+RICE,Ags,Rough Rice,USD,2000.0,2.97,0.012
+ROBUSTA,Ags,Robusta Coffee,USD,10.0,3.0,1.9
+RUSSELL_mini,Equity,E-Mini Russell 2000 Index,USD,50.0,2.2,0.094
+SEK,FX_G10,SEKUSD currency,USD,2000000.0,2.47,3e-05
+SGD,FX_EM,SGX US Dollar in Singapore Dollar Futures (Full-Sized),SGD,100000.0,3.5,0.00014
+SHATZ,Bond,German 2 year bond Schatz,EUR,1000.0,2.0,0.0025
+SILVER,Metals,NYMEX Silver Index,USD,1000.0,1.27,0.004
+SMI,Equity,Swiss equity index SMI,CHF,10.0,4.0,1.0
+SOFR,STIR,Secured Overnight Financing Rate 3-month average of rates,USD,2500.0,2.12,0.003
+SONIA3,STIR,Three Month SONIA,GBP,2500.0,0.0,0.0025
+SOYBEAN,Ags,Soybean,USD,50.0,2.97,0.17
+SOYMEAL,Ags,Soybean Meal,USD,100.0,2.97,0.057
+SOYOIL,Ags,Soybean oil,USD,600.0,2.97,0.015
+SP400,Equity,E-mini S&P Midcap 400 Futures,USD,100.0,2.25,0.34
+SP500,Equity,US equity index S&P500,USD,50.0,2.25,0.13
+SPI200,Equity,ASX SPI200 Index,AUD,25.0,5.0,0.57
+SUGAR11,Ags,Sugar #11,USD,1120.0,2.97,0.005
+SUGAR_WHITE,Ags,White sugar,USD,50.0,0.0,0.2
+TOPIX,Equity,Japan Mini Topix,JPY,1000.0,50.0,0.24
+US10,Bond,US 10 year bond note,USD,1000.0,1.67,0.008
+US2,Bond,US 2 year bond note,USD,2000.0,1.51,0.002
+US20,Bond,US 20 year bond,USD,1000.0,1.74,0.016
+US30,Bond,Ultra Treasury Bond,USD,1000.0,1.82,0.016
+US5,Bond,US 5 year bond note,USD,1000.0,1.51,0.0039
+V2X,Vol,Vol European equity V2X,EUR,100.0,2.0,0.026
+VIX,Vol,Vol US equity VIX,USD,1000.0,2.38,0.025
+WHEAT,Ags,Wheat,USD,50.0,2.97,0.16
+YENEUR,FX_G10,YENEUR currency,JPY,125000.0,329.4,0.011
+ZAR,FX_EM,South African Rand,USD,500000.0,2.47,1.4e-05

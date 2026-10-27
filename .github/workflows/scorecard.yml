@@ -1,0 +1,52 @@
+name: scorecard
+
+on:
+  schedule:
+    - cron: "30 22 * * 1-5"   # weekdays after the US close
+  workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Pull 3y of history for listed contracts (first run)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scorecard
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Refresh pysystemtrade base data (Mondays)
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            git clone --depth 1 --filter=blob:none --sparse https://github.com/pst-group/pysystemtrade /tmp/pst
+            (cd /tmp/pst && git sparse-checkout set data/futures/adjusted_prices_csv data/futures/multiple_prices_csv data/futures/csvconfig)
+            python -c "from syslib.data import build_panels; build_panels('/tmp/pst/data/futures', 'data/pst')"
+          fi
+      - name: Extend data with Yahoo Finance
+        run: python -m syslib.live ${{ inputs.backfill && '--backfill' || '' }}
+      - name: Run scorecard
+        run: python -m syslib.scorecard --data data/merged --out results
+      - name: Render report
+        run: python -m syslib.report --results results
+      - name: Tests
+        run: python -m pytest -q tests
+      - name: Commit results
+        run: |
+          git config user.name "scorecard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add results data/live data/pst
+          git diff --cached --quiet || git commit -m "Scorecard $(date -u +%F)"
+          git push
