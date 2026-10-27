@@ -18,7 +18,9 @@ always consistent with the current data. Outputs:
   positions.csv  open trades: entry date and price, contracts, P&L to date
   closed.csv     closed trades with exit and realised P&L
   events.csv     every trade event since BOOK_START
-  blotter.md     what changed since the previous run, then the open book
+  books.csv      one row per book: family, open positions, longs, shorts, open P&L
+  blotter.md     what changed since the previous run, then every open book
+  blotter_changes.md  the daily post: headline books' trades in full, the rest summarised
   state.json     date of the last run's data, used to find "new since last run"
 
 P&L is gross of costs: contracts x change in back-adjusted price x point
@@ -37,7 +39,9 @@ from .engine import backtest
 from .signals import Ctx
 from .strategies import REGISTRY
 
-BOOKS = ["trend_carry", "multi_7", "s183_replica"]
+# every registered strategy runs as its own book; these three get the full
+# treatment in the daily change post, the rest are summarised a line each
+HEADLINE = ["trend_carry", "multi_7", "s183_replica"]
 CAPITAL = 100_000_000
 BOOK_START = "2026-10-26"
 RESIZE_MIN = 0.5
@@ -143,7 +147,8 @@ def main():
     panel = load_panel(a.data)
     ev, op, cl = [], [], []
     desc = panel.meta["description"]
-    for name in BOOKS:
+    books = HEADLINE + sorted(n for n in REGISTRY if n not in HEADLINE)
+    for name in books:
         bp = book_positions(panel, name)
         e, o, c = trades_for(name, bp, a.start)
         ev += e
@@ -163,18 +168,44 @@ def main():
     pos.to_csv(out / "positions.csv", index=False)
     closed.to_csv(out / "closed.csv", index=False)
 
+    rows = []
+    for name in books:
+        sub = pos[pos.strategy == name] if not pos.empty else pos
+        rows.append(dict(book=name, family=REGISTRY[name].family, prior=REGISTRY[name].prior,
+                         headline=name in HEADLINE, open=len(sub),
+                         longs=int((sub.direction == "long").sum()) if len(sub) else 0,
+                         shorts=int((sub.direction == "short").sum()) if len(sub) else 0,
+                         open_pnl_usd=round(float(sub.pnl_usd.sum())) if len(sub) else 0))
+    pd.DataFrame(rows).to_csv(out / "books.csv", index=False)
+
     new = events
     if prev_asof and not events.empty:
         new = events[pd.to_datetime(events["date"]) > pd.Timestamp(prev_asof)]
-    lines = [f"# Trade blotter, data to {as_of}", "",
-             f"Books: {', '.join(BOOKS)}, each sized at ${CAPITAL / 1e6:,.0f}m notional, "
-             f"20% vol target, live since {a.start}. P&L gross of costs, USD.", "",
-             f"## Changes since {'last run (' + prev_asof + ')' if prev_asof else 'inception'}", ""]
     if not new.empty:
         new = new.assign(date=pd.to_datetime(new["date"]).dt.date)
-    lines += _table(new, ["date", "strategy", "instrument", "description", "action",
-                          "contracts_before", "contracts_after", "price"]) if not new.empty else ["No trades.", ""]
-    for name in BOOKS:
+    since = 'last run (' + prev_asof + ')' if prev_asof else 'inception'
+    head = [f"# Trade blotter, data to {as_of}", "",
+            f"{len(books)} books, one per strategy, each sized at ${CAPITAL / 1e6:,.0f}m notional, "
+            f"20% vol target, live since {a.start}. P&L gross of costs, USD.", ""]
+    ev_cols = ["date", "strategy", "instrument", "description", "action",
+               "contracts_before", "contracts_after", "price"]
+    hl = new[new.strategy.isin(HEADLINE)] if not new.empty else new
+    rest = new[~new.strategy.isin(HEADLINE)] if not new.empty else new
+    changes = [f"## Changes since {since}: {', '.join(HEADLINE)}", ""]
+    changes += _table(hl, ev_cols) if not hl.empty else ["No trades.", ""]
+    changes += [f"## Changes since {since}: other books", ""]
+    if rest.empty:
+        changes += ["No trades.", ""]
+    else:
+        for name, g in rest.groupby("strategy", sort=False):
+            n = g.action.value_counts()
+            parts = [f"{n[k]} {k}{'s' if n[k] > 1 else ''}" for k in ("open", "close", "flip", "resize") if k in n]
+            changes.append(f"- {name}: {', '.join(parts)}")
+        changes.append("")
+    lines = head + changes[:]
+    full_rest = [f"## All trades since {since}: other books", ""] + (_table(rest, ev_cols) if not rest.empty else ["No trades.", ""])
+    lines += full_rest
+    for name in books:
         sub = pos[pos.strategy == name] if not pos.empty else pos
         tot = sub["pnl_usd"].sum() if not sub.empty else 0
         lines += [f"## {name}: {len(sub)} open, open P&L ${tot:,.0f}", ""]
@@ -183,11 +214,13 @@ def main():
                             ["instrument", "description", "direction", "contracts", "forecast",
                              "entry_date", "entry_price", "last_price", "pnl_usd", "signal_since"])
     (out / "blotter.md").write_text("\n".join(lines))
-    # short version for the daily notification: changes plus one line per book
-    first = next((i for i, l in enumerate(lines) if l.startswith(f"## {BOOKS[0]}:")), len(lines))
-    summary = [f"- {l[3:]}" for l in lines[first:] if l.startswith("## ")]
-    short = lines[:first] + ["### Books", ""] + summary + [
-        "", "Full open book: `results/book/blotter.md`."]
+    # short version for the daily notification: headline trades in full, the
+    # rest one line per book, then one line per book on the open position
+    b = pd.DataFrame(rows)
+    summary = [f"- {r.book}: {r.open} open ({r.longs} long, {r.shorts} short), open P&L ${r.open_pnl_usd:,.0f}"
+               for r in b.itertuples()]
+    short = head + changes + ["### Books", ""] + summary + [
+        "", "Full blotter with every trade and open position: `results/book/blotter.md`."]
     (out / "blotter_changes.md").write_text("\n".join(short))
     state_p.write_text(json.dumps({"as_of": as_of, "n_new_events": int(len(new))}))
     print("\n".join(lines[:40]))
