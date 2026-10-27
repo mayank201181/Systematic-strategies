@@ -1,0 +1,134 @@
+date,strategy,description,instrument,action,contracts_before,contracts_after,price
+2026-10-26,multi_7,NYMEX Aluminum Index,ALUMINIUM,open,0,-6.0,3260.0
+2026-10-26,multi_7,AUDUSD currency,AUD,open,0,75.0,0.7019000053405762
+2026-10-26,multi_7,Micro Bitcoin,BITCOIN,open,0,266.0,80160.0
+2026-10-26,multi_7,BREUSD currency,BRE,open,0,666.0,0.18485000729560852
+2026-10-26,multi_7,Brent crude summer,BRENT_W,open,0,57.0,114.69000244140625
+2026-10-26,multi_7,CADUSD currency,CAD,open,0,-187.0,0.7152500152587891
+2026-10-26,multi_7,CHFUSD currency,CHF,open,0,-138.0,1.214900016784668
+2026-10-26,multi_7,Cocoa NY,COCOA,open,0,-2.0,5503.0
+2026-10-26,multi_7,Coffee,COFFEE,open,0,-7.0,299.5
+2026-10-26,multi_7,Copper,COPPER,open,0,19.0,6.567999839782715
+2026-10-26,multi_7,Corn,CORN,open,0,-25.0,453.5
+2026-10-26,multi_7,Cotton #2,COTTON2,open,0,-7.0,78.55000305175781
+2026-10-26,multi_7,Light sweet crude Winter,CRUDE_W,open,0,41.0,100.83000183105469
+2026-10-26,multi_7,EURUSD currency,EUR,open,0,-133.0,1.1194000244140625
+2026-10-26,multi_7,Feeder cattle,FEEDCOW,open,0,20.0,348.6000061035156
+2026-10-26,multi_7,RBOB Gasoline US,GASOILINE,open,0,31.0,3.205899953842163
+2026-10-26,multi_7,Natural gas US,GAS_US,open,0,-85.0,2.6050000190734863
+2026-10-26,multi_7,GBPUSD currency,GBP,open,0,-29.0,1.3342000246047974
+2026-10-26,multi_7,Gold,GOLD,open,0,-8.0,4025.5
+2026-10-26,multi_7,Heating oil,HEATOIL,open,0,33.0,4.871699810028076
+2026-10-26,multi_7,JPYUSD currency,JPY,open,0,-64.0,0.006366000045090914
+2026-10-26,multi_7,Lean hogs,LEANHOG,open,0,-127.0,64.7249984741211
+2026-10-26,multi_7,Live cattle,LIVECOW,open,0,4.0,231.1999969482422
+2026-10-26,multi_7,MEXUSD currency,MXP,open,0,-280.0,0.053700000047683716
+2026-10-26,multi_7,US equity index Nasdaq,NASDAQ,open,0,7.0,29456.25
+2026-10-26,multi_7,Nikkei 225 Mini,NIKKEI,open,0,70.0,63370.0
+2026-10-26,multi_7,NZDUSD currency,NZD,open,0,-104.0,0.5705000162124634
+2026-10-26,multi_7,Oat Futures,OATIES,open,0,-10.0,362.5
+2026-10-26,multi_7,Orange Juice (FCOJ-A),OJ,open,0,-29.0,136.14999389648438
+2026-10-26,multi_7,Palladium,PALLAD,open,0,-19.0,1041.0
+2026-10-26,multi_7,Platinum,PLAT,open,0,-20.0,1524.5999755859375
+2026-10-26,multi_7,Hard Red Winter Wheat -KCBOT-,REDWHEAT,open,0,-15.0,658.5
+2026-10-26,multi_7,Rough Rice,RICE,open,0,34.0,17.104999542236328
+2026-10-26,multi_7,E-Mini Russell 2000 Index,RUSSELL_mini,open,0,-47.0,2800.5
+2026-10-26,multi_7,NYMEX Silver Index,SILVER,open,0,-15.0,53.779998779296875
+2026-10-26,multi_7,Soybean,SOYBEAN,open,0,21.0,1241.5
+2026-10-26,multi_7,Soybean Meal,SOYMEAL,open,0,29.0,340.6000061035156
+2026-10-26,multi_7,Soybean oil,SOYOIL,open,0,2.0,66.80000305175781
+2026-10-26,multi_7,US equity index S&P500,SP500,open,0,20.0,7723.75
+2026-10-26,multi_7,Sugar #11,SUGAR11,open,0,91.0,19.100000381469727
+2026-10-26,multi_7,US 10 year bond note,US10,open,0,-142.0,106.171875
+2026-10-26,multi_7,US 2 year bond note,US2,open,0,-275.0,102.05078125
+2026-10-26,multi_7,US 20 year bond,US20,open,0,-33.0,107.65625
+2026-10-26,multi_7,Ultra Treasury Bond,US30,open,0,-23.0,109.4375
+2026-10-26,multi_7,US 5 year bond note,US5,open,0,-266.0,104.4765625
+2026-10-26,multi_7,Wheat,WHEAT,open,0,-21.0,614.5
+2026-10-26,s183_replica,AUDUSD currency,AUD,open,0,239.0,0.7019000053405762
+2026-10-26,s183_replica,Micro Bitcoin,BITCOIN,open,0,-29.0,80160.0
+2026-10-26,s183_replica,Brent crude summer,BRENT_W,open,0,35.0,114.69000244140625
+2026-10-26,s183_replica,CADUSD currency,CAD,open,0,-425.0,0.7152500152587891
+2026-10-26,s183_replica,CHFUSD currency,CHF,open,0,-227.0,1.214900016784668
+2026-10-26,s183_replica,Cocoa NY,COCOA,open,0,-36.0,5503.0
+2026-10-26,s183_replica,Coffee,COFFEE,open,0,17.0,299.5
+2026-10-26,s183_replica,Copper,COPPER,open,0,14.0,6.567999839782715
+2026-10-26,s183_replica,Corn,CORN,open,0,-48.0,453.5
+2026-10-26,s183_replica,Cotton #2,COTTON2,open,0,-26.0,78.55000305175781
+2026-10-26,s183_replica,Light sweet crude Winter,CRUDE_W,open,0,35.0,100.83000183105469
+2026-10-26,s183_replica,EURUSD currency,EUR,open,0,-332.0,1.1194000244140625
+2026-10-26,s183_replica,Feeder cattle,FEEDCOW,open,0,42.0,348.6000061035156
+2026-10-26,s183_replica,RBOB Gasoline US,GASOILINE,open,0,18.0,3.205899953842163
+2026-10-26,s183_replica,Natural gas US,GAS_US,open,0,-22.0,2.6050000190734863
+2026-10-26,s183_replica,GBPUSD currency,GBP,open,0,-394.0,1.3342000246047974
+2026-10-26,s183_replica,Gold,GOLD,open,0,-19.0,4025.5
+2026-10-26,s183_replica,Heating oil,HEATOIL,open,0,16.0,4.871699810028076
+2026-10-26,s183_replica,JPYUSD currency,JPY,open,0,-267.0,0.006366000045090914
+2026-10-26,s183_replica,Lean hogs,LEANHOG,open,0,-394.0,64.7249984741211
+2026-10-26,s183_replica,Live cattle,LIVECOW,open,0,-60.0,231.1999969482422
+2026-10-26,s183_replica,MEXUSD currency,MXP,open,0,565.0,0.053700000047683716
+2026-10-26,s183_replica,US equity index Nasdaq,NASDAQ,open,0,-3.0,29456.25
+2026-10-26,s183_replica,Nikkei 225 Mini,NIKKEI,open,0,37.0,63370.0
+2026-10-26,s183_replica,NZDUSD currency,NZD,open,0,-511.0,0.5705000162124634
+2026-10-26,s183_replica,Palladium,PALLAD,open,0,-20.0,1041.0
+2026-10-26,s183_replica,Platinum,PLAT,open,0,-29.0,1524.5999755859375
+2026-10-26,s183_replica,E-Mini Russell 2000 Index,RUSSELL_mini,open,0,-70.0,2800.5
+2026-10-26,s183_replica,NYMEX Silver Index,SILVER,open,0,-19.0,53.779998779296875
+2026-10-26,s183_replica,Soybean,SOYBEAN,open,0,138.0,1241.5
+2026-10-26,s183_replica,Soybean Meal,SOYMEAL,open,0,52.0,340.6000061035156
+2026-10-26,s183_replica,Soybean oil,SOYOIL,open,0,72.0,66.80000305175781
+2026-10-26,s183_replica,US equity index S&P500,SP500,open,0,13.0,7723.75
+2026-10-26,s183_replica,Sugar #11,SUGAR11,open,0,-112.0,19.100000381469727
+2026-10-26,s183_replica,US 10 year bond note,US10,open,0,-354.0,106.171875
+2026-10-26,s183_replica,US 2 year bond note,US2,open,0,-453.0,102.05078125
+2026-10-26,s183_replica,US 20 year bond,US20,open,0,-163.0,107.65625
+2026-10-26,s183_replica,Ultra Treasury Bond,US30,open,0,-96.0,109.4375
+2026-10-26,s183_replica,US 5 year bond note,US5,open,0,-464.0,104.4765625
+2026-10-26,s183_replica,Wheat,WHEAT,open,0,-24.0,614.5
+2026-10-26,trend_carry,NYMEX Aluminum Index,ALUMINIUM,open,0,-33.0,3260.0
+2026-10-26,trend_carry,AUDUSD currency,AUD,open,0,1.0,0.7019000053405762
+2026-10-26,trend_carry,Micro Bitcoin,BITCOIN,open,0,267.0,80160.0
+2026-10-26,trend_carry,BREUSD currency,BRE,open,0,491.0,0.18485000729560852
+2026-10-26,trend_carry,Brent crude summer,BRENT_W,open,0,55.0,114.69000244140625
+2026-10-26,trend_carry,CADUSD currency,CAD,open,0,-195.0,0.7152500152587891
+2026-10-26,trend_carry,CHFUSD currency,CHF,open,0,-120.0,1.214900016784668
+2026-10-26,trend_carry,Cocoa NY,COCOA,open,0,1.0,5503.0
+2026-10-26,trend_carry,Coffee,COFFEE,open,0,-4.0,299.5
+2026-10-26,trend_carry,Copper,COPPER,open,0,9.0,6.567999839782715
+2026-10-26,trend_carry,Corn,CORN,open,0,-33.0,453.5
+2026-10-26,trend_carry,Cotton #2,COTTON2,open,0,-8.0,78.55000305175781
+2026-10-26,trend_carry,Light sweet crude Winter,CRUDE_W,open,0,42.0,100.83000183105469
+2026-10-26,trend_carry,CME CF Ether-Dollar Reference Rate,ETHEREUM,open,0,-2.0,2324.5
+2026-10-26,trend_carry,EURUSD currency,EUR,open,0,-132.0,1.1194000244140625
+2026-10-26,trend_carry,Feeder cattle,FEEDCOW,open,0,25.0,348.6000061035156
+2026-10-26,trend_carry,RBOB Gasoline US,GASOILINE,open,0,32.0,3.205899953842163
+2026-10-26,trend_carry,Natural gas US,GAS_US,open,0,-48.0,2.6050000190734863
+2026-10-26,trend_carry,GBPUSD currency,GBP,open,0,-43.0,1.3342000246047974
+2026-10-26,trend_carry,Gold,GOLD,open,0,-13.0,4025.5
+2026-10-26,trend_carry,Heating oil,HEATOIL,open,0,31.0,4.871699810028076
+2026-10-26,trend_carry,JPYUSD currency,JPY,open,0,-58.0,0.006366000045090914
+2026-10-26,trend_carry,Lean hogs,LEANHOG,open,0,-127.0,64.7249984741211
+2026-10-26,trend_carry,Live cattle,LIVECOW,open,0,7.0,231.1999969482422
+2026-10-26,trend_carry,MEXUSD currency,MXP,open,0,-406.0,0.053700000047683716
+2026-10-26,trend_carry,US equity index Nasdaq,NASDAQ,open,0,4.0,29456.25
+2026-10-26,trend_carry,Nikkei 225 Mini,NIKKEI,open,0,37.0,63370.0
+2026-10-26,trend_carry,NZDUSD currency,NZD,open,0,-127.0,0.5705000162124634
+2026-10-26,trend_carry,Oat Futures,OATIES,open,0,-8.0,362.5
+2026-10-26,trend_carry,Orange Juice (FCOJ-A),OJ,open,0,-18.0,136.14999389648438
+2026-10-26,trend_carry,Palladium,PALLAD,open,0,-25.0,1041.0
+2026-10-26,trend_carry,Platinum,PLAT,open,0,-35.0,1524.5999755859375
+2026-10-26,trend_carry,Hard Red Winter Wheat -KCBOT-,REDWHEAT,open,0,-10.0,658.5
+2026-10-26,trend_carry,Rough Rice,RICE,open,0,47.0,17.104999542236328
+2026-10-26,trend_carry,E-Mini Russell 2000 Index,RUSSELL_mini,open,0,-33.0,2800.5
+2026-10-26,trend_carry,NYMEX Silver Index,SILVER,open,0,-47.0,53.779998779296875
+2026-10-26,trend_carry,Soybean,SOYBEAN,open,0,8.0,1241.5
+2026-10-26,trend_carry,Soybean Meal,SOYMEAL,open,0,20.0,340.6000061035156
+2026-10-26,trend_carry,Soybean oil,SOYOIL,open,0,-12.0,66.80000305175781
+2026-10-26,trend_carry,US equity index S&P500,SP500,open,0,20.0,7723.75
+2026-10-26,trend_carry,Sugar #11,SUGAR11,open,0,90.0,19.100000381469727
+2026-10-26,trend_carry,US 10 year bond note,US10,open,0,-161.0,106.171875
+2026-10-26,trend_carry,US 2 year bond note,US2,open,0,-312.0,102.05078125
+2026-10-26,trend_carry,US 20 year bond,US20,open,0,-58.0,107.65625
+2026-10-26,trend_carry,Ultra Treasury Bond,US30,open,0,-44.0,109.4375
+2026-10-26,trend_carry,US 5 year bond note,US5,open,0,-283.0,104.4765625
+2026-10-26,trend_carry,Wheat,WHEAT,open,0,-16.0,614.5
