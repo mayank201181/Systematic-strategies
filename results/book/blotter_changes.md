@@ -1,102 +1,119 @@
-# Trade blotter, data to 2026-10-27
+# Trade blotter, data to 2026-10-30
 
-23 books, one per strategy, each sized at $100m notional, 20% vol target, live since 2026-10-26. P&L gross of costs, USD.
+26 books, one per strategy, each sized at $100m notional, 20% vol target, live since 2026-10-26. P&L gross of costs, USD.
 
-## Changes since last run (2026-10-26): trend_carry, multi_7, s183_replica
+## Changes since last run (2026-10-27): trend_carry, multi_7, s183_replica
 
 | date | strategy | instrument | description | action | contracts_before | contracts_after | price |
 |---|---|---|---|---|---|---|---|
-| 2026-10-27 | multi_7 | ALUMINIUM | NYMEX Aluminum Index | close | -5 | 0 | 3,231 |
-| 2026-10-27 | multi_7 | COCOA | Cocoa NY | close | -2 | 0 | 5,490 |
-| 2026-10-27 | multi_7 | COFFEE | Coffee | close | -7 | 0 | 300.95 |
-| 2026-10-27 | multi_7 | CORN | Corn | resize | -25 | -83 | 454 |
-| 2026-10-27 | multi_7 | COTTON2 | Cotton #2 | close | -7 | 0 | 78.76 |
-| 2026-10-27 | multi_7 | ETHEREUM | CME CF Ether-Dollar Reference Rate | open | 0 | -1 | 2,304.5 |
-| 2026-10-27 | multi_7 | FEEDCOW | Feeder cattle | close | 22 | 0 | 348.55 |
-| 2026-10-27 | multi_7 | GOLD | Gold | resize | -8 | -12 | 4,017.6 |
-| 2026-10-27 | multi_7 | LEANHOG | Lean hogs | close | -127 | 0 | 64.675 |
-| 2026-10-27 | multi_7 | LIVECOW | Live cattle | close | 3 | 0 | 231.2 |
-| 2026-10-27 | multi_7 | OATIES | Oat Futures | close | -10 | 0 | 360.5 |
-| 2026-10-27 | multi_7 | OJ | Orange Juice (FCOJ-A) | close | -29 | 0 | 135.8 |
-| 2026-10-27 | multi_7 | PLAT | Platinum | resize | -20 | -31 | 1,508.5 |
-| 2026-10-27 | multi_7 | REDWHEAT | Hard Red Winter Wheat -KCBOT- | resize | -15 | -53 | 656.75 |
-| 2026-10-27 | multi_7 | RICE | Rough Rice | close | 34 | 0 | 17.155 |
-| 2026-10-27 | multi_7 | SILVER | NYMEX Silver Index | resize | -15 | -27 | 53.105 |
-| 2026-10-27 | multi_7 | SUGAR11 | Sugar #11 | close | 91 | 0 | 19.1 |
-| 2026-10-27 | multi_7 | WHEAT | Wheat | resize | -21 | -69 | 614.75 |
-| 2026-10-27 | s183_replica | COCOA | Cocoa NY | close | -36 | 0 | 5,490 |
-| 2026-10-27 | s183_replica | COFFEE | Coffee | close | 17 | 0 | 300.95 |
-| 2026-10-27 | s183_replica | CORN | Corn | resize | -48 | -74 | 454 |
-| 2026-10-27 | s183_replica | COTTON2 | Cotton #2 | close | -26 | 0 | 78.76 |
-| 2026-10-27 | s183_replica | FEEDCOW | Feeder cattle | close | 45 | 0 | 348.55 |
-| 2026-10-27 | s183_replica | LEANHOG | Lean hogs | close | -394 | 0 | 64.675 |
-| 2026-10-27 | s183_replica | LIVECOW | Live cattle | close | -60 | 0 | 231.2 |
-| 2026-10-27 | s183_replica | SUGAR11 | Sugar #11 | close | -115 | 0 | 19.1 |
-| 2026-10-27 | trend_carry | ALUMINIUM | NYMEX Aluminum Index | close | -36 | 0 | 3,231 |
-| 2026-10-27 | trend_carry | AUD | AUDUSD currency | resize | 1 | 3 | 0.70165 |
-| 2026-10-27 | trend_carry | COCOA | Cocoa NY | close | 1 | 0 | 5,490 |
-| 2026-10-27 | trend_carry | COFFEE | Coffee | close | -4 | 0 | 300.95 |
-| 2026-10-27 | trend_carry | CORN | Corn | resize | -33 | -99 | 454 |
-| 2026-10-27 | trend_carry | COTTON2 | Cotton #2 | close | -8 | 0 | 78.76 |
-| 2026-10-27 | trend_carry | ETHEREUM | CME CF Ether-Dollar Reference Rate | resize | -2 | -4 | 2,304.5 |
-| 2026-10-27 | trend_carry | FEEDCOW | Feeder cattle | close | 26 | 0 | 348.55 |
-| 2026-10-27 | trend_carry | LEANHOG | Lean hogs | close | -127 | 0 | 64.675 |
-| 2026-10-27 | trend_carry | LIVECOW | Live cattle | close | 7 | 0 | 231.2 |
-| 2026-10-27 | trend_carry | OATIES | Oat Futures | close | -8 | 0 | 360.5 |
-| 2026-10-27 | trend_carry | OJ | Orange Juice (FCOJ-A) | close | -20 | 0 | 135.8 |
-| 2026-10-27 | trend_carry | REDWHEAT | Hard Red Winter Wheat -KCBOT- | resize | -10 | -34 | 656.75 |
-| 2026-10-27 | trend_carry | RICE | Rough Rice | close | 47 | 0 | 17.155 |
-| 2026-10-27 | trend_carry | SOYOIL | Soybean oil | resize | -12 | -31 | 66.91 |
-| 2026-10-27 | trend_carry | SUGAR11 | Sugar #11 | close | 90 | 0 | 19.1 |
-| 2026-10-27 | trend_carry | WHEAT | Wheat | resize | -16 | -50 | 614.75 |
+| 2026-10-28 | multi_7 | ALUMINIUM | NYMEX Aluminum Index | resize | 2 | 4 | 3,287 |
+| 2026-10-28 | s183_replica | GOLD | Gold | resize | -19 | -5 | 4,051.6 |
+| 2026-10-28 | s183_replica | SOYMEAL | Soybean Meal | resize | 52 | 16 | 335.7 |
+| 2026-10-28 | trend_carry | AUD | AUDUSD currency | resize | 5 | 12 | 0.70415 |
+| 2026-10-28 | trend_carry | COCOA | Cocoa NY | close | 1 | 0 | 5,456 |
+| 2026-10-28 | trend_carry | REDWHEAT | Hard Red Winter Wheat -KCBOT- | resize | -10 | -16 | 643 |
+| 2026-10-28 | trend_carry | SOYBEAN | Soybean | resize | 7 | 2 | 1,224.5 |
+| 2026-10-29 | multi_7 | ALUMINIUM | NYMEX Aluminum Index | resize | 4 | 11 | 3,332.25 |
+| 2026-10-29 | multi_7 | COCOA | Cocoa NY | resize | -2 | -3 | 5,456 |
+| 2026-10-29 | multi_7 | ETHEREUM | CME CF Ether-Dollar Reference Rate | resize | -1 | -2 | 2,342.5 |
+| 2026-10-29 | multi_7 | OATIES | Oat Futures | resize | -15 | -26 | 343 |
+| 2026-10-29 | s183_replica | GOLD | Gold | resize | -5 | -14 | 4,031.4 |
+| 2026-10-29 | s183_replica | SOYMEAL | Soybean Meal | flip | 16 | -26 | 329.3 |
+| 2026-10-29 | trend_carry | ALUMINIUM | NYMEX Aluminum Index | resize | -36 | -17 | 3,332.25 |
+| 2026-10-29 | trend_carry | COCOA | Cocoa NY | open | 0 | -1 | 5,456 |
+| 2026-10-29 | trend_carry | OATIES | Oat Futures | resize | -13 | -24 | 343 |
+| 2026-10-29 | trend_carry | SOYBEAN | Soybean | close | 2 | 0 | 1,219.75 |
+| 2026-10-29 | trend_carry | WHEAT | Wheat | resize | -16 | -25 | 603.75 |
+| 2026-10-30 | multi_7 | ALUMINIUM | NYMEX Aluminum Index | close | 11 | 0 | 3,332.25 |
+| 2026-10-30 | multi_7 | CORN | Corn | resize | -25 | -58 | 449 |
+| 2026-10-30 | multi_7 | ETHEREUM | CME CF Ether-Dollar Reference Rate | resize | -2 | -3 | 2,238 |
+| 2026-10-30 | multi_7 | FEEDCOW | Feeder cattle | close | 27 | 0 | 346.475 |
+| 2026-10-30 | multi_7 | GOLD | Gold | resize | -8 | -13 | 3,978 |
+| 2026-10-30 | multi_7 | LEANHOG | Lean hogs | close | -103 | 0 | 59.825 |
+| 2026-10-30 | multi_7 | LIVECOW | Live cattle | close | 4 | 0 | 226.3 |
+| 2026-10-30 | multi_7 | OATIES | Oat Futures | resize | -26 | -47 | 343.5 |
+| 2026-10-30 | multi_7 | OJ | Orange Juice (FCOJ-A) | close | -30 | 0 | 128.55 |
+| 2026-10-30 | multi_7 | PALLAD | Palladium | resize | -19 | -30 | 970 |
+| 2026-10-30 | multi_7 | PLAT | Platinum | resize | -20 | -35 | 1,434.6 |
+| 2026-10-30 | multi_7 | REDWHEAT | Hard Red Winter Wheat -KCBOT- | resize | -15 | -38 | 642.75 |
+| 2026-10-30 | multi_7 | RICE | Rough Rice | close | 34 | 0 | 17.41 |
+| 2026-10-30 | multi_7 | SILVER | NYMEX Silver Index | resize | -15 | -33 | 50.235 |
+| 2026-10-30 | multi_7 | SOYOIL | Soybean oil | resize | 2 | 1 | 66.04 |
+| 2026-10-30 | multi_7 | WHEAT | Wheat | resize | -21 | -49 | 602.25 |
+| 2026-10-30 | s183_replica | BITCOIN | Micro Bitcoin | resize | -29 | -52 | 77,480 |
+| 2026-10-30 | s183_replica | FEEDCOW | Feeder cattle | close | 54 | 0 | 346.475 |
+| 2026-10-30 | s183_replica | GOLD | Gold | resize | -14 | -22 | 3,978 |
+| 2026-10-30 | s183_replica | LEANHOG | Lean hogs | close | -299 | 0 | 59.825 |
+| 2026-10-30 | s183_replica | LIVECOW | Live cattle | close | -60 | 0 | 226.3 |
+| 2026-10-30 | s183_replica | SOYMEAL | Soybean Meal | resize | -26 | -63 | 326.5 |
+| 2026-10-30 | trend_carry | ALUMINIUM | NYMEX Aluminum Index | close | -17 | 0 | 3,332.25 |
+| 2026-10-30 | trend_carry | COCOA | Cocoa NY | resize | -1 | -2 | 5,514 |
+| 2026-10-30 | trend_carry | COFFEE | Coffee | resize | -4 | -7 | 287.8 |
+| 2026-10-30 | trend_carry | CORN | Corn | resize | -33 | -71 | 449 |
+| 2026-10-30 | trend_carry | COTTON2 | Cotton #2 | resize | -8 | -14 | 78.27 |
+| 2026-10-30 | trend_carry | ETHEREUM | CME CF Ether-Dollar Reference Rate | resize | -4 | -8 | 2,238 |
+| 2026-10-30 | trend_carry | FEEDCOW | Feeder cattle | close | 29 | 0 | 346.475 |
+| 2026-10-30 | trend_carry | LEANHOG | Lean hogs | close | -103 | 0 | 59.825 |
+| 2026-10-30 | trend_carry | LIVECOW | Live cattle | close | 8 | 0 | 226.3 |
+| 2026-10-30 | trend_carry | NASDAQ | US equity index Nasdaq | resize | 4 | 2 | 28,787.8 |
+| 2026-10-30 | trend_carry | OATIES | Oat Futures | resize | -24 | -43 | 343.5 |
+| 2026-10-30 | trend_carry | OJ | Orange Juice (FCOJ-A) | close | -23 | 0 | 128.55 |
+| 2026-10-30 | trend_carry | REDWHEAT | Hard Red Winter Wheat -KCBOT- | resize | -16 | -32 | 642.75 |
+| 2026-10-30 | trend_carry | RICE | Rough Rice | close | 47 | 0 | 17.41 |
+| 2026-10-30 | trend_carry | SOYBEAN | Soybean | open | 0 | -2 | 1,217.75 |
+| 2026-10-30 | trend_carry | SOYOIL | Soybean oil | resize | -12 | -26 | 66.04 |
+| 2026-10-30 | trend_carry | WHEAT | Wheat | resize | -25 | -41 | 602.25 |
 
-## Changes since last run (2026-10-26): other books
+## Changes since last run (2026-10-27): other books
 
-- asset_trend: 11 closes, 5 flips
-- bench_long_rp: 11 closes, 6 resizes
-- carry: 11 closes, 5 resizes
-- mr_fast: 11 closes, 6 flips, 9 resizes
-- mr_in_asset: 11 closes, 8 flips, 2 resizes
-- quad_broad: 10 closes, 1 flip, 5 resizes
-- relcarry_group: 11 closes, 6 resizes
-- relmom_group: 11 closes, 2 flips, 7 resizes
-- relskew_group: 11 closes, 6 resizes
-- s183_no_overlays: 7 closes, 1 resize
-- skew: 11 closes, 5 resizes
-- trend_accel: 11 closes, 1 flip, 7 resizes
-- trend_breakout: 1 open, 10 closes, 5 resizes
-- trend_ewmac: 11 closes, 2 resizes
-- trend_ewmac_fast: 11 closes, 1 flip, 11 resizes
-- tsmom_12m: 11 closes, 6 resizes
-- value_5y: 11 closes, 7 resizes
-- vov: 11 closes, 3 flips, 4 resizes
-- xsmom_global: 11 closes, 5 resizes
-- xsmom_group: 11 closes, 4 resizes
+- carry: 1 open, 6 closes, 8 resizes
+- mr_fast: 1 open, 6 closes, 29 flips, 45 resizes
+- quad_broad: 1 open, 6 closes, 2 flips, 9 resizes
+- relcarry_group: 6 closes, 5 resizes
+- relmom_group: 7 closes, 1 flip, 14 resizes
+- relskew_group: 6 closes, 7 resizes
+- s183_no_overlays: 3 closes, 1 flip, 5 resizes
+- skew: 6 closes, 6 resizes
+- trend_accel: 2 opens, 9 closes, 2 flips, 24 resizes
+- trend_breakout: 7 closes, 2 flips, 27 resizes
+- trend_ewmac: 8 closes, 15 resizes
+- trend_ewmac_fast: 7 closes, 8 flips, 35 resizes
+- tsmom_12m: 6 closes, 9 resizes
+- value_5y: 1 open, 6 closes, 10 resizes
+- vov: 7 closes, 9 flips, 12 resizes
+- xsmom_global: 6 closes, 1 flip, 11 resizes
+- xsmom_group: 1 open, 6 closes, 11 resizes
+- asset_trend: 6 closes, 5 flips, 1 resize
+- bench_long_rp: 6 closes, 7 resizes
+- mr_in_asset: 6 closes, 3 flips, 7 resizes
 
 ### Books
 
-- trend_carry: 36 open (13 long, 23 short), open P&L $-903,988
-- multi_7: 36 open (14 long, 22 short), open P&L $-1,169,370
-- s183_replica: 33 open (11 long, 22 short), open P&L $-531,765
-- asset_trend: 36 open (22 long, 14 short), open P&L $-375,044
-- bench_long_rp: 36 open (36 long, 0 short), open P&L $-228,251
-- carry: 35 open (14 long, 21 short), open P&L $-1,467,984
-- mr_fast: 36 open (21 long, 15 short), open P&L $-338,016
-- mr_in_asset: 36 open (24 long, 12 short), open P&L $376,198
-- quad_broad: 36 open (14 long, 22 short), open P&L $-1,489,524
-- relcarry_group: 32 open (15 long, 17 short), open P&L $-1,501,184
-- relmom_group: 36 open (19 long, 17 short), open P&L $-451,571
-- relskew_group: 36 open (21 long, 15 short), open P&L $-1,078,812
-- s183_no_overlays: 33 open (11 long, 22 short), open P&L $-904,062
-- skew: 36 open (20 long, 16 short), open P&L $-1,378,889
-- trend_accel: 36 open (11 long, 25 short), open P&L $-264,979
-- trend_breakout: 36 open (11 long, 25 short), open P&L $-256,571
-- trend_ewmac: 36 open (20 long, 16 short), open P&L $-248,498
-- trend_ewmac_fast: 36 open (12 long, 24 short), open P&L $-400,537
-- tsmom_12m: 36 open (22 long, 14 short), open P&L $-458,285
-- value_5y: 35 open (20 long, 15 short), open P&L $526,481
-- vov: 36 open (18 long, 18 short), open P&L $5,342
-- xsmom_global: 36 open (19 long, 17 short), open P&L $-452,395
-- xsmom_group: 35 open (18 long, 17 short), open P&L $-220,064
+- trend_carry: 41 open (13 long, 28 short), open P&L $-496,835
+- multi_7: 41 open (15 long, 26 short), open P&L $-1,089,821
+- s183_replica: 37 open (11 long, 26 short), open P&L $-1,998,297
+- asset_trend: 41 open (27 long, 14 short), open P&L $-1,711,689
+- bench_long_rp: 41 open (41 long, 0 short), open P&L $-1,092,903
+- carry: 40 open (16 long, 24 short), open P&L $-857,784
+- mr_fast: 41 open (28 long, 13 short), open P&L $-2,063,935
+- mr_in_asset: 41 open (32 long, 9 short), open P&L $27,430
+- quad_broad: 41 open (15 long, 26 short), open P&L $-2,292,621
+- relcarry_group: 37 open (18 long, 19 short), open P&L $-781,073
+- relmom_group: 40 open (20 long, 20 short), open P&L $-183,843
+- relskew_group: 41 open (22 long, 19 short), open P&L $-496,369
+- s183_no_overlays: 37 open (11 long, 26 short), open P&L $-2,142,293
+- skew: 41 open (21 long, 20 short), open P&L $-3,067,624
+- trend_accel: 40 open (14 long, 26 short), open P&L $1,793,892
+- trend_breakout: 40 open (12 long, 28 short), open P&L $534,899
+- trend_ewmac: 39 open (22 long, 17 short), open P&L $-663,420
+- trend_ewmac_fast: 40 open (12 long, 28 short), open P&L $2,652,081
+- tsmom_12m: 41 open (25 long, 16 short), open P&L $-1,407,975
+- value_5y: 41 open (24 long, 17 short), open P&L $675,697
+- vov: 40 open (17 long, 23 short), open P&L $-519,458
+- vrp_contango: 0 open (0 long, 0 short), open P&L $0
+- vrp_gated: 0 open (0 long, 0 short), open P&L $0
+- vrp_short: 0 open (0 long, 0 short), open P&L $0
+- xsmom_global: 41 open (21 long, 20 short), open P&L $-1,082,612
+- xsmom_group: 41 open (20 long, 21 short), open P&L $-394,248
 
 Full blotter with every trade and open position: `results/book/blotter.md`.
