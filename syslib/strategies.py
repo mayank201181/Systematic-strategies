@@ -184,6 +184,42 @@ for spec in [
                       reference=spec[4], prior="control"))
 
 
+# --------------------------------------------------------------------------
+# Variance risk premium: short front vol futures (VIX, V2X)
+# --------------------------------------------------------------------------
+
+VOL = ["VIX", "V2X"]
+
+
+def b_vrp_short(c):
+    """Always short, vol-targeted: the raw VRP / roll-down harvest."""
+    return (c.adj * 0 - 10.0).where(c.adj.notna())
+
+
+def b_vrp_contango(c):
+    """Short scaled by roll-down; flat (never long) in backwardation."""
+    return sc(S.carry(c, 20)).clip(upper=0)
+
+
+def b_vrp_gated(c):
+    """Short only in contango and while fast vol trend is not rising."""
+    contango = S.carry(c, 5) < 0
+    calm = S.ewmac(c, 8, 32) <= 0
+    return (-10.0 * (contango & calm)).where(c.adj.notna())
+
+
+for spec in [
+    ("vrp_short", "Always short VIX/V2X front futures, vol-targeted", b_vrp_short,
+     "Carr & Wu (2009); Eraker (2009)"),
+    ("vrp_contango", "Short vol futures scaled by roll-down, flat in backwardation",
+     b_vrp_contango, "Simon & Campasano (2014)"),
+    ("vrp_gated", "Short vol futures only in contango and with 8/32 trend not rising",
+     b_vrp_gated, "Simon & Campasano (2014)"),
+]:
+    register(Strategy(name=spec[0], family="vrp", description=spec[1], build=spec[2],
+                      reference=spec[3], universe=list(VOL), added="2026-10-30"))
+
+
 def b_long_only(c):
     return (c.adj * 0 + 10.0).where(c.adj.notna())
 

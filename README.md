@@ -21,6 +21,7 @@ reproduces the published result (see `results/README.md`).
 | `syslib/strategies.py` | the registry; one entry per strategy |
 | `syslib/s183.py` | trends-research S183 replica |
 | `syslib/metrics.py` | Sharpe, HAC t-stat, deflated Sharpe, multiple-testing haircut, drawdowns |
+| `syslib/vrp_study.py` | VRP sleeves vs the trend books: crisis windows, blends, books ex-VIX/V2X (`results/vrp/`) |
 | `syslib/scorecard.py` | runs the registry, writes `results/` |
 | `syslib/live.py` | extends data to today from Yahoo Finance (runs in Actions) |
 | `syslib/report.py` | renders `results/README.md` and charts |
