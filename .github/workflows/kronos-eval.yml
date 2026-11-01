@@ -1,0 +1,47 @@
+name: kronos-eval
+on:
+  push:
+    branches: ["claude/project-thread-9lubfk"]
+    paths: ["kronos_eval/forecast.py", "kronos_eval/data/**", ".github/workflows/kronos-eval.yml"]
+  workflow_dispatch:
+jobs:
+  forecast:
+    # third-party model code runs here, with a read-only token
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    steps:
+      - uses: actions/checkout@v4
+        with: {persist-credentials: false}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install pandas pyarrow einops==0.8.1 huggingface_hub==0.33.1 safetensors tqdm
+      - run: |
+          git clone -q https://github.com/shiyu-coder/Kronos /tmp/kronos
+          git -C /tmp/kronos checkout -q 67b630e67f6a18c9e9be918d9b4337c960db1e9a
+      - run: mkdir -p out && PYTHONPATH=/tmp/kronos python kronos_eval/forecast.py kronos_eval/data/ohlcv_adj.parquet out ${{ matrix.chunk }} 20
+      - uses: actions/upload-artifact@v4
+        with: {name: "forecast-${{ matrix.chunk }}", path: out/}
+  collect:
+    needs: forecast
+    if: always()
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {path: art, pattern: "forecast-*", merge-multiple: true}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install pandas pyarrow
+      - run: |
+          python -c "import pandas as pd,glob;d=pd.concat(pd.read_parquet(f) for f in sorted(glob.glob('art/*.parquet')));print(d.shape,d.date.min(),d.date.max());d.to_parquet('kronos_eval/data/forecasts.parquet')"
+          git config user.name "kronos-bot"; git config user.email "actions@users.noreply.github.com"
+          git add kronos_eval/data/forecasts.parquet && git commit -m "Kronos OOS forecasts $(date -u +%F)" && git push

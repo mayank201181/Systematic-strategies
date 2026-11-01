@@ -1,0 +1,28 @@
+name: kronos-assets
+on:
+  push:
+    branches: ["claude/project-thread-9lubfk"]
+    paths: ["kronos_eval/fetch.py", ".github/workflows/kronos-assets.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install yfinance pandas pyarrow huggingface_hub
+      - run: python kronos_eval/fetch.py /tmp/assets
+      - name: Push to kronos-assets branch
+        run: |
+          cd /tmp/assets
+          rm -rf */.cache
+          find . -size +45M -type f -exec sh -c 'split -b 40M "$1" "$1.part-" && rm "$1"' _ {} \;
+          ls -laR
+          git init -q -b kronos-assets
+          git config user.name "kronos-bot"; git config user.email "actions@users.noreply.github.com"
+          git add -A && git commit -qm "Kronos weights + Yahoo OHLCV $(date -u +%F)"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" kronos-assets
